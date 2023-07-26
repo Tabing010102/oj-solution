@@ -1,15 +1,18 @@
 #include <cstdio>
 #include <cstring>
 
+typedef long long LL;
+
 const int MAXN = 100000+10;
 
 int n, m;
-int A[MAXN];
+LL A[MAXN];
 
 struct SEG {
 	int n;
-	int sumv[MAXN * 4], addv[MAXN * 4];
-	int qL, qR, qaddv, _sumv;
+	LL sumv[MAXN * 4], addv[MAXN * 4];
+	int qL, qR;
+	LL qaddv, _sumv;
 	SEG(int n) {
 		this->n = n;
 		memset(addv, 0, sizeof(addv));
@@ -44,7 +47,7 @@ struct SEG {
 		}
 		upcurpinfo(o, L, R);
 	}
-	void qsum(int o, int L, int R, int add=0) {
+	void qsum(int o, int L, int R, LL add=0) {
 		if (L >= qL && R <= qR) {
 			_sumv += sumv[o] + add * (R-L+1);
 		} else {
@@ -54,13 +57,13 @@ struct SEG {
 			if (M < qR) qsum(rc, M+1, R, add+addv[o]);
 		}
 	}
-	void doAdd(int L, int R, int k) {
+	void doAdd(int L, int R, LL k) {
 		qL = L;
 		qR = R;
 		qaddv = k;
 		add(1, 1, n);
 	}
-	int doSum(int L, int R) {
+	LL doSum(int L, int R) {
 		qL = L;
 		qR = R;
 		_sumv = 0;
@@ -71,17 +74,18 @@ struct SEG {
 
 int main() {
 	scanf("%d%d", &n, &m);
-	for (int i = 1; i <= n; i++) scanf("%d", &A[i]);
+	for (int i = 1; i <= n; i++) scanf("%lld", &A[i]);
 	SEG *d = new SEG(n);
 	for (int i = 1; i <= m; i++) {
-		int t, l, r, k;
+		int t, l, r;
+		LL k;
 		scanf("%d", &t);
 		if (t == 1) {
-			scanf("%d%d%d", &l, &r, &k);
+			scanf("%d%d%lld", &l, &r, &k);
 			d->doAdd(l, r, k);
 		} else if (t == 2) {
 			scanf("%d%d", &l, &r);
-			printf("%d\n", d->doSum(l, r));
+			printf("%lld\n", d->doSum(l, r));
 		}
 	}
 	return 0;
