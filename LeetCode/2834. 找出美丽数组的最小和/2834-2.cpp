@@ -16,7 +16,7 @@ public:
         if (n > target / 2) {
 	        int n2 = n - target / 2;
 	        int k2 = target + n2 - 1;
-	        ans += (int)(((((LL)target + k2) % MOD) * n2 / 2) % MOD);
+	        ans = (int)(((LL)ans + (((((LL)target + k2) % MOD) * n2 / 2) % MOD)) % MOD);
 	    }
         return ans;
     }
