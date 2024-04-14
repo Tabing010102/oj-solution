@@ -32,7 +32,8 @@ public:
         lp->next = rvhead->next;
         rp->next = nullptr;
         ListNode *ans = lvhead->next;
-        delete lvhead, rvhead;
+        delete lvhead;
+        delete rvhead;
         return ans;
     }
 };
