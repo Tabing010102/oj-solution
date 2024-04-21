@@ -8,7 +8,7 @@ public:
         int ri = nums.size() - 1;
         while (ri >= 0 && nums[ri] == val) { ri--; }
         int li = 0;
-        while (li < ri) {
+        while (li <= ri) {
             if (nums[li] != val) { li++; }
             else {
                 nums[li] = nums[ri--];
