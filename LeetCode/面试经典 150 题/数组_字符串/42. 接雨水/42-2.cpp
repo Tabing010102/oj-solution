@@ -16,13 +16,13 @@ public:
                 dq.pop_back();
                 dq.push_back(i);
             } else {
-                // vertical up
+                // current notch
                 while (!dq.empty() && height[dq.back()] < cnt) {
-                    int r = dq.back();
+                    int m = dq.back();
                     dq.pop_back();
                     if (!dq.empty()) {
                         int l = dq.back() + 1;
-                        ans += (min(cnt, height[dq.front()]) - height[r]) * (r - l + 1);
+                        ans += (min(cnt, height[l - 1]) - height[m]) * (i - l);
                     }
                 }
                 while (!dq.empty() && height[dq.back()] == cnt) { dq.pop_back(); }
