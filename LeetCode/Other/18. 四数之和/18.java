@@ -11,12 +11,12 @@ class Solution {
         Arrays.sort(d);
         for (int p1 = 0; p1 < n - 3;) {
             for (int p2 = p1 + 1; p2 < n - 2;) {
-                int rr = target - d[p1] - d[p2];
+                long rr = (long)target - d[p1] - d[p2];
                 int l = p2 + 1, r = n - 1;
                 while (l < r) {
-                    while (l < r && d[l] + d[r] < rr) { l++; }
-                    while (l < r && d[l] + d[r] > rr) { r--; }
-                    if (d[l] + d[r] == rr) {
+                    while (l < r && (long)d[l] + d[r] < rr) { l++; }
+                    while (l < r && (long)d[l] + d[r] > rr) { r--; }
+                    if (l < r && (long)d[l] + d[r] == rr) {
                         ans.add(Arrays.asList(d[p1], d[p2], d[l], d[r]));
                         int d0 = d[l];
                         while (l < r && d[l] == d0) { l++; }
