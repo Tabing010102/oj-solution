@@ -1,2 +1,3 @@
-# Ignore all exe files
+# Ignore all executable files
 *.exe
+*.class
